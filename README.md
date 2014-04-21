@@ -1,2 +1,2 @@
-prime-numbers
+number-numbers
 =============
