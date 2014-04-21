@@ -7,7 +7,7 @@
 <version>1.0-SNAPSHOT</version>
 <packaging>jar</packaging>
 
-<name>number-numbers</name>
+<name>prime-numbers</name>
 <url>http://maven.apache.org</url>
 
 <properties>
