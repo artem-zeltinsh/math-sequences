@@ -1,8 +1,9 @@
 package org.lotus.edu;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 /**
  * Utility class to deal with prime numbers.
@@ -20,7 +21,7 @@ public class PrimeUtils {
      */
     public static List<Integer> getPrimes(int boundary) {
         if (boundary <= 1) {
-            return Collections.emptyList();
+            return emptyList();
         }
 
         List<Integer> result = new ArrayList<Integer>();
