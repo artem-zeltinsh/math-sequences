@@ -1,4 +1,10 @@
 apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'org.lotus.edu'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 1.7
+
 
 repositories {
 	mavenCentral()

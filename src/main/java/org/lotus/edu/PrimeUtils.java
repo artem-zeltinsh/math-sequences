@@ -24,7 +24,7 @@ public class PrimeUtils {
             return emptyList();
         }
 
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
         for (int i = 2; i <= boundary; i++) {
             if (isPrime(i)) {
                 result.add(i);
