@@ -5,18 +5,13 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.List;
+import java.util.Arrays;
 
 public class PrimeUtilsTest {
 
     @Test(dataProvider = "expectedPrimes")
     public void getPrimes(int number, Integer[] expectedPrimes) {
-        List<Integer> actualPrimes = PrimeUtils.getPrimes(number);
-        assertEquals(actualPrimes.size(), expectedPrimes.length);
-
-        for (int i = 0; i < expectedPrimes.length; i++) {
-            assertEquals(expectedPrimes[i], actualPrimes.get(i));
-        }
+        assertEquals(PrimeUtils.getPrimes(number), Arrays.asList(expectedPrimes));
     }
 
     @DataProvider(name = "expectedPrimes")

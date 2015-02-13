@@ -1,9 +1,9 @@
 package org.lotus.edu;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
-import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Utility class to deal with prime numbers.
@@ -20,18 +20,7 @@ public class PrimeUtils {
      * @return list of primes
      */
     public static List<Integer> getPrimes(int boundary) {
-        if (boundary <= 1) {
-            return emptyList();
-        }
-
-        List<Integer> result = new ArrayList<>();
-        for (int i = 2; i <= boundary; i++) {
-            if (isPrime(i)) {
-                result.add(i);
-            }
-        }
-
-        return result;
+        return IntStream.rangeClosed(2, boundary).filter(n -> isPrime(n)).boxed().collect(toList());
     }
 
     /**
@@ -46,11 +35,6 @@ public class PrimeUtils {
         }
 
         double testBoundary = Math.sqrt(number);
-        for (int i = 2; i <= testBoundary; i++) {
-            if (number % i == 0) {
-                return false;
-            }
-        }
-        return true;
+        return IntStream.rangeClosed(2, (int) testBoundary).noneMatch(i -> number % i == 0);
     }
 }
