@@ -1,4 +1,4 @@
-package org.lotus.edu;
+package org.lotus.edu.math;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

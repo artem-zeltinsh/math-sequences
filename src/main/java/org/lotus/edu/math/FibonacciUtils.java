@@ -1,4 +1,4 @@
-package org.lotus.edu;
+package org.lotus.edu.math;
 
 import java.util.List;
 import java.util.stream.Stream;
