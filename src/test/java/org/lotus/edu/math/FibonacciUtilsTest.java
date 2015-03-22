@@ -3,15 +3,13 @@ package org.lotus.edu.math;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-
 import static org.testng.Assert.assertEquals;
 
 public class FibonacciUtilsTest {
 
     @Test(dataProvider = "expectedFibonacciNumbers")
     public void testF(int index, Integer[] expectedNumbers) {
-        assertEquals(FibonacciUtils.f(index), Arrays.asList(expectedNumbers));
+        assertEquals(FibonacciUtils.getNumbers(index).toArray(), expectedNumbers);
     }
 
     @DataProvider
