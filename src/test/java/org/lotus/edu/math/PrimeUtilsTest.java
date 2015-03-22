@@ -5,13 +5,11 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.Arrays;
-
 public class PrimeUtilsTest {
 
     @Test(dataProvider = "expectedPrimes")
     public void getPrimes(int number, Integer[] expectedPrimes) {
-        assertEquals(PrimeUtils.getPrimes(number), Arrays.asList(expectedPrimes));
+        assertEquals(PrimeUtils.getPrimes(number).toArray(), expectedPrimes);
     }
 
     @DataProvider(name = "expectedPrimes")
@@ -44,7 +42,7 @@ public class PrimeUtilsTest {
 
     @Test(dataProvider = "isPrimeNumber")
     public void testIsPrime(int number, boolean isPrimeExpected) {
-        assertEquals(isPrimeExpected, PrimeUtils.isPrime(number));
+        assertEquals(PrimeUtils.isPrime(number), isPrimeExpected);
     }
 
     @DataProvider(name = "isPrimeNumber")
