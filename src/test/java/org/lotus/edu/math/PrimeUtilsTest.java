@@ -28,7 +28,7 @@ public class PrimeUtilsTest {
     }
 
     @Theory
-    public void negativeNumberZeroOrOneShouldFailPrimalityTest(
+    public void negativeNumberOrZeroOrOneShouldFailPrimalityTest(
             @TestedOn(ints = {-3, -2, -1, 0, 1}) int negativeOrZeroOrOne) {
         assertFalse(negativeOrZeroOrOne + " should fail primality test", PrimeUtils.isPrime(negativeOrZeroOrOne));
     }
@@ -50,5 +50,3 @@ public class PrimeUtilsTest {
         assertThat(PrimeUtils.getPrimes(11), contains(2, 3, 5, 7, 11));
     }
 }
-
-
