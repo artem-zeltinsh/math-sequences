@@ -1,76 +1,54 @@
 package org.lotus.edu.math;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.experimental.theories.*;
+import org.junit.experimental.theories.suppliers.TestedOn;
+import org.junit.runner.RunWith;
 
-import static org.testng.Assert.assertEquals;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
+@RunWith(Theories.class)
 public class PrimeUtilsTest {
 
-    @Test(dataProvider = "expectedPrimes")
-    public void getPrimes(int number, Integer[] expectedPrimes) {
-        assertEquals(PrimeUtils.getPrimes(number).toArray(), expectedPrimes);
+    @Theory
+    public void primeNumberShouldPassPrimalityTest(
+            @TestedOn(ints = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31}) int prime) {
+        assertTrue(prime + " should pass primality test", PrimeUtils.isPrime(prime));
     }
 
-    @DataProvider(name = "expectedPrimes")
-    public static Object[][] expectedPrimes() {
-        return new Object[][]{
-                {-1, new Integer[]{}},
-                {0, new Integer[]{}},
-                {1, new Integer[]{}},
-                {2, new Integer[]{2}},
-                {3, new Integer[]{2, 3}},
-                {4, new Integer[]{2, 3}},
-                {5, new Integer[]{2, 3, 5}},
-                {6, new Integer[]{2, 3, 5}},
-                {7, new Integer[]{2, 3, 5, 7}},
-                {8, new Integer[]{2, 3, 5, 7}},
-                {9, new Integer[]{2, 3, 5, 7}},
-                {10, new Integer[]{2, 3, 5, 7}},
-                {11, new Integer[]{2, 3, 5, 7, 11}},
-                {12, new Integer[]{2, 3, 5, 7, 11}},
-                {13, new Integer[]{2, 3, 5, 7, 11, 13}},
-                {14, new Integer[]{2, 3, 5, 7, 11, 13}},
-                {15, new Integer[]{2, 3, 5, 7, 11, 13}},
-                {16, new Integer[]{2, 3, 5, 7, 11, 13}},
-                {17, new Integer[]{2, 3, 5, 7, 11, 13, 17}},
-                {18, new Integer[]{2, 3, 5, 7, 11, 13, 17}},
-                {19, new Integer[]{2, 3, 5, 7, 11, 13, 17, 19}},
-                {20, new Integer[]{2, 3, 5, 7, 11, 13, 17, 19}}
-        };
+    @Theory
+    public void compositeNumberShouldFailPrimalityTest(
+            @TestedOn(ints = {4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 30}) int composite) {
+        assertFalse(composite + " should fail primality test", PrimeUtils.isPrime(composite));
     }
 
-    @Test(dataProvider = "isPrimeNumber")
-    public void testIsPrime(int number, boolean isPrimeExpected) {
-        assertEquals(PrimeUtils.isPrime(number), isPrimeExpected);
+    @Theory
+    public void negativeNumberZeroOrOneShouldFailPrimalityTest(
+            @TestedOn(ints = {-3, -2, -1, 0, 1}) int negativeOrZeroOrOne) {
+        assertFalse(negativeOrZeroOrOne + " should fail primality test", PrimeUtils.isPrime(negativeOrZeroOrOne));
     }
 
-    @DataProvider(name = "isPrimeNumber")
-    public static Object[][] isPrimeNumbers() {
-        return new Object[][]{
-                {-1, false},
-                {0, false},
-                {1, false},
-                {2, true},
-                {3, true},
-                {4, false},
-                {5, true},
-                {6, false},
-                {7, true},
-                {8, false},
-                {9, false},
-                {10, false},
-                {11, true},
-                {12, false},
-                {13, true},
-                {14, false},
-                {15, false},
-                {16, false},
-                {17, true},
-                {18, false},
-                {19, true},
-                {20, false}
-        };
+    @Test
+    public void getPrimes() {
+        assertThat(PrimeUtils.getPrimes(-1), empty());
+        assertThat(PrimeUtils.getPrimes(0), empty());
+        assertThat(PrimeUtils.getPrimes(1), empty());
+        assertThat(PrimeUtils.getPrimes(2), contains(2));
+        assertThat(PrimeUtils.getPrimes(3), contains(2, 3));
+        assertThat(PrimeUtils.getPrimes(4), contains(2, 3));
+        assertThat(PrimeUtils.getPrimes(5), contains(2, 3, 5));
+        assertThat(PrimeUtils.getPrimes(6), contains(2, 3, 5));
+        assertThat(PrimeUtils.getPrimes(7), contains(2, 3, 5, 7));
+        assertThat(PrimeUtils.getPrimes(8), contains(2, 3, 5, 7));
+        assertThat(PrimeUtils.getPrimes(9), contains(2, 3, 5, 7));
+        assertThat(PrimeUtils.getPrimes(10), contains(2, 3, 5, 7));
+        assertThat(PrimeUtils.getPrimes(11), contains(2, 3, 5, 7, 11));
     }
 }
+
 
