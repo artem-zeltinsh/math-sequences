@@ -1,16 +1,19 @@
+apply plugin: 'scala'
 apply plugin: 'java'
 apply plugin: 'idea'
 
-group = 'org.lotus.edu'
-version = '1.0-SNAPSHOT'
+group = 'org.lotus.edu.math'
+version = '1.0'
 sourceCompatibility = 1.8
-
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	compile 'org.scala-lang:scala-library:2.11.5'
+	
 	testCompile 'junit:junit:4.12'
 	testCompile 'org.hamcrest:hamcrest-library:1.3'
+	testCompile 'org.scalatest:scalatest_2.11:2.2.4'
 }

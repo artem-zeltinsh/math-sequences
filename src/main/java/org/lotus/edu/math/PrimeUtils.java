@@ -14,9 +14,8 @@ public class PrimeUtils {
     }
 
     /**
-     * Returns the list of primes less or equal to the provided <code>boundary</code>.
-     *
-     * @param boundary - test boundary
+     * Returns the list of primes less or equal to the provided {@code boundary}.
+     * @param boundary test boundary
      * @return list of primes
      */
     public static List<Integer> getPrimes(int boundary) {
@@ -25,9 +24,8 @@ public class PrimeUtils {
 
     /**
      * Tests if provided <code>number</code> is prime.
-     *
-     * @param number - a number to test
-     * @return <code>true</code> if <code>number</code> is prime, <code>false</code> otherwise.
+     * @param number a number to test
+     * @return {@code true} if the number is prime, {@code false} otherwise
      */
     public static boolean isPrime(int number) {
         if (number <= 1) {
