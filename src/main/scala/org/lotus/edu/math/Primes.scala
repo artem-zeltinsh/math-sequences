@@ -12,14 +12,13 @@ object Primes {
    */
   def getPrimes(boundary: Int): IndexedSeq[Int] = 2.to(boundary).filter(n => isPrime(n))
 
-
   /**
    * Tests if provided number is prime,
    * @param number number to test
    * @return true if the number is prime, false otherwise
    */
   def isPrime(number: Int): Boolean = {
-    if (number <= 1) return false
-    (2 to math.sqrt(number).toInt).forall(i => number % i != 0)
+    if (number <= 1) false
+    else (2 to math.sqrt(number).toInt).forall(i => number % i != 0)
   }
 }
