@@ -26,19 +26,11 @@ class SequenceSpec extends FlatSpec with TableDrivenPropertyChecks {
     }
   }
 
-  "For a number we" should "find primes less or equal to that number" in {
-    assert(Sequence.getPrimes(-1) == IndexedSeq())
-    assert(Sequence.getPrimes(0) == IndexedSeq())
-    assert(Sequence.getPrimes(1) == IndexedSeq())
-    assert(Sequence.getPrimes(2) == IndexedSeq(2))
-    assert(Sequence.getPrimes(3) == IndexedSeq(2, 3))
-    assert(Sequence.getPrimes(4) == IndexedSeq(2, 3))
-    assert(Sequence.getPrimes(5) == IndexedSeq(2, 3, 5))
-    assert(Sequence.getPrimes(6) == IndexedSeq(2, 3, 5))
-    assert(Sequence.getPrimes(7) == IndexedSeq(2, 3, 5, 7))
-    assert(Sequence.getPrimes(8) == IndexedSeq(2, 3, 5, 7))
-    assert(Sequence.getPrimes(9) == IndexedSeq(2, 3, 5, 7))
-    assert(Sequence.getPrimes(10) == IndexedSeq(2, 3, 5, 7))
-    assert(Sequence.getPrimes(11) == IndexedSeq(2, 3, 5, 7, 11))
+  "Stream of primes" should "provide only prime numbers" in {
+    assert(Sequence.ofPrimes().take(8).toSeq === Seq(2, 3, 5, 7, 11, 13, 17, 19))
+  }
+
+  "Stream of fibonacci numbers" should "provide only fibonacci numbers" in {
+    assert(Sequence.ofFibonacciNumbers().take(10).toSeq === Seq(0, 1, 1, 2, 3, 5, 8, 13, 21, 34))
   }
 }
