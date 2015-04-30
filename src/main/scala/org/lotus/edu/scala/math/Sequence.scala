@@ -6,11 +6,22 @@ package org.lotus.edu.scala.math
 object Sequence {
 
   /**
-   * Returns sequence of primes less or equal to the provided boundary.
-   * @param boundary test boundary
-   * @return sequence of primes
+   * Returns stream of primes.
+   * @return stream of primes
    */
-  def getPrimes(boundary: Int): IndexedSeq[Int] = for (n <- 2 to boundary if Number.isPrime(n)) yield n
+  def ofPrimes(): Stream[Int] = {
+    def sieve(s: Stream[Int]): Stream[Int] = s.head #:: sieve(s.tail filter (_ % s.head != 0))
+    sieve(Stream.from(2))
+  }
+
+  /**
+   * Returns stream of Fibonacci numbers.
+   * @return
+   */
+  def ofFibonacciNumbers(): Stream[Int] = {
+    def appendTail(f1: Int, f2: Int): Stream[Int] = f1 #:: appendTail(f2, f1 + f2)
+    appendTail(0, 1)
+  }
 
   object Number {
 
