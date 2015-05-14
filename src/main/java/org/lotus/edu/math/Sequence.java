@@ -13,7 +13,7 @@ public class Sequence {
 
     /**
      * Returns stream of primes.
-     * @return list of primes
+     * @return stream of primes
      */
     public static IntStream ofPrimes() {
         return IntStream.iterate(1, i -> i + 1).filter(Number::isPrime);
@@ -21,7 +21,7 @@ public class Sequence {
 
     /**
      * Returns stream of Fibonacci numbers.
-     * @return list of Fibonacci numbers
+     * @return stream of Fibonacci numbers
      */
     public static IntStream ofFibonacciNumbers() {
         return Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]}).mapToInt(t -> t[0]);
@@ -29,7 +29,7 @@ public class Sequence {
 
     public static class Number {
         /**
-         * Tests if provided <code>number</code> is prime.
+         * Tests if provided {@code number} is prime.
          * @param number a number to test
          * @return {@code true} if the number is prime, {@code false} otherwise
          */
