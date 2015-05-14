@@ -5,6 +5,7 @@ import org.junit.experimental.theories.*;
 import org.junit.experimental.theories.suppliers.TestedOn;
 import org.junit.runner.RunWith;
 
+import static java.util.stream.Collectors.toList;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.junit.Assert.assertTrue;
@@ -34,19 +35,14 @@ public class SequenceTest {
     }
 
     @Test
-    public void getPrimes() {
-        assertThat(Sequence.ofPrimes(-1), empty());
-        assertThat(Sequence.ofPrimes(0), empty());
-        assertThat(Sequence.ofPrimes(1), empty());
-        assertThat(Sequence.ofPrimes(2), contains(2));
-        assertThat(Sequence.ofPrimes(3), contains(2, 3));
-        assertThat(Sequence.ofPrimes(4), contains(2, 3));
-        assertThat(Sequence.ofPrimes(5), contains(2, 3, 5));
-        assertThat(Sequence.ofPrimes(6), contains(2, 3, 5));
-        assertThat(Sequence.ofPrimes(7), contains(2, 3, 5, 7));
-        assertThat(Sequence.ofPrimes(8), contains(2, 3, 5, 7));
-        assertThat(Sequence.ofPrimes(9), contains(2, 3, 5, 7));
-        assertThat(Sequence.ofPrimes(10), contains(2, 3, 5, 7));
-        assertThat(Sequence.ofPrimes(11), contains(2, 3, 5, 7, 11));
+    public void sequenceOfPrimes() {
+        assertThat(Sequence.ofPrimes().limit(9).boxed().collect(toList()),
+                contains(2, 3, 5, 7, 11, 13, 17, 19, 23));
+    }
+
+    @Test
+    public void sequenceOfFibonacciNumbers() {
+        assertThat(Sequence.ofFibonacciNumbers().limit(10).boxed().collect(toList()),
+                contains(0, 1, 1, 2, 3, 5, 8, 13, 21, 34));
     }
 }

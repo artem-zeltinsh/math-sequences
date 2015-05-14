@@ -1,9 +1,7 @@
 package org.lotus.edu.math;
 
-import java.util.List;
 import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.toList;
+import java.util.stream.Stream;
 
 /**
  * Utility class to deal with some famous sequences.
@@ -14,12 +12,19 @@ public class Sequence {
     }
 
     /**
-     * Returns a list of primes less or equal to the provided {@code boundary}.
-     * @param boundary test boundary
+     * Returns stream of primes.
      * @return list of primes
      */
-    public static List<Integer> ofPrimes(int boundary) {
-        return IntStream.rangeClosed(2, boundary).filter(n -> Number.isPrime(n)).boxed().collect(toList());
+    public static IntStream ofPrimes() {
+        return IntStream.iterate(1, i -> i + 1).filter(Number::isPrime);
+    }
+
+    /**
+     * Returns stream of Fibonacci numbers.
+     * @return list of Fibonacci numbers
+     */
+    public static IntStream ofFibonacciNumbers() {
+        return Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]}).mapToInt(t -> t[0]);
     }
 
     public static class Number {
@@ -33,7 +38,7 @@ public class Sequence {
                 return false;
             }
 
-            double testBoundary = java.lang.Math.sqrt(number);
+            double testBoundary = Math.sqrt(number);
             return IntStream.rangeClosed(2, (int) testBoundary).noneMatch(i -> number % i == 0);
         }
     }

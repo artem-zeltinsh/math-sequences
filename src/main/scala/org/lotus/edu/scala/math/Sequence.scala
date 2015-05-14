@@ -16,7 +16,7 @@ object Sequence {
 
   /**
    * Returns stream of Fibonacci numbers.
-   * @return
+   * @return stream of fibonacci numbers
    */
   def ofFibonacciNumbers(): Stream[Int] = {
     def appendTail(f1: Int, f2: Int): Stream[Int] = f1 #:: appendTail(f2, f1 + f2)
